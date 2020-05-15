@@ -1,1 +1,1 @@
-*/5 * * * * echo '=== run script ===' && python /workspace/main.py
+0,30 * * * * echo '=== run script ===' && python /workspace/main.py
