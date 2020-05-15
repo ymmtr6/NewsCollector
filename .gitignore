@@ -1,0 +1,13 @@
+# VScode
+.vscode
+
+# OS X
+.DS_Store
+
+# Python
+__pycache__
+*.pyc
+
+# PROJECT
+db/*
+configdb/*

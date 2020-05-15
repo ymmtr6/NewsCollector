@@ -1,0 +1,21 @@
+{
+  "yahoo_news": [
+    "https://news.yahoo.co.jp/pickup/rss.xml",
+    "https://news.yahoo.co.jp/pickup/world/rss.xml",
+    "https://news.yahoo.co.jp/pickup/entertainment/rss.xml",
+    "https://news.yahoo.co.jp/pickup/computer/rss.xml",
+    "https://news.yahoo.co.jp/pickup/local/rss.xml",
+    "https://news.yahoo.co.jp/pickup/domestic/rss.xml",
+    "https://news.yahoo.co.jp/pickup/economy/rss.xml",
+    "https://news.yahoo.co.jp/pickup/sports/rss.xml",
+    "https://news.yahoo.co.jp/pickup/science/rss.xml",
+    "https://headlines.yahoo.co.jp/rss/all-dom.xml",
+    "https://headlines.yahoo.co.jp/rss/all-c_int.xml",
+    "https://headlines.yahoo.co.jp/rss/all-bus.xml",
+    "https://headlines.yahoo.co.jp/rss/all-c_ent.xml",
+    "https://headlines.yahoo.co.jp/rss/all-c_spo.xml",
+    "https://headlines.yahoo.co.jp/rss/all-c_sci.xml",
+    "https://headlines.yahoo.co.jp/rss/all-c_life.xml",
+    "https://headlines.yahoo.co.jp/rss/all-loc.xml"
+  ]
+}
