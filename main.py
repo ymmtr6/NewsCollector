@@ -47,16 +47,24 @@ class NewsCollector():
             if "pickup" in entry.link:
                 detail_link = news_feed.parseElement(
                     entry.link, ".pickupMain_detailLink a").get("href")
-            text = " ".join([news_feed.sanitize(p.text) for p in news_feed.parseElement(
-                detail_link, ".articleMain .paragraph", select_one=False)])
-            self.write_article(entry.title, detail_link, entry.published, text)
+            if "byline" in detail_link:
+                para = news_feed.parseElement(
+                    detail_link, "#byline_detail_article div p,h2",
+                    select_one=False)
+            else:
+                para = news_feed.parseElement(
+                    detail_link, ".articleMain .paragraph", select_one=False)
+            text = " ".join([news_feed.sanitize(p.text) for p in para])
+            self.write_article(entry.title, detail_link,
+                               entry.published, text, link)
 
-    def write_article(self, title, link, published, text):
+    def write_article(self, title, link, published, text, rss_link):
         d = {
             "title": title,
             "link": link,
             "published": published,
-            "text": text
+            "text": text,
+            "rss_link": rss_link
         }
         self.insert(d)
 
@@ -69,6 +77,7 @@ class NewsCollector():
                 self.yahoo_news(l)
             except:
                 import traceback
+                print(l)
                 traceback.print_exc()
             time.sleep(interval)
 

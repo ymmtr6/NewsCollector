@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 import requests
 
 # TOPICS
-#RSS_URL = "https://news.yahoo.co.jp/pickup/rss.xml"
+# RSS_URL = "https://news.yahoo.co.jp/pickup/rss.xml"
 # 国内
-#RSS_URL = "https://news.yahoo.co.jp/pickup/domestic/rss.xml"
+# RSS_URL = "https://news.yahoo.co.jp/pickup/domestic/rss.xml"
 # ITmedia
 
 
@@ -30,9 +30,9 @@ def sanitize(text):
 
 if __name__ == "__main__":
     # TOPICS
-    #RSS_URL = "https://news.yahoo.co.jp/pickup/rss.xml"
+    # RSS_URL = "https://news.yahoo.co.jp/pickup/rss.xml"
     # 国内
-    #RSS_URL = "https://news.yahoo.co.jp/pickup/domestic/rss.xml"
+    # RSS_URL = "https://news.yahoo.co.jp/pickup/domestic/rss.xml"
     RSS_URL = "https://headlines.yahoo.co.jp/rss/zdn_mkt-dom.xml"
     print("YAHOO! NEWS COLLECTOR v1.0 START+")
     yahoo_news_dic = feedparser.parse(RSS_URL)
@@ -45,6 +45,7 @@ if __name__ == "__main__":
         if "pickup" in entry.link:
             detail_link = parseElement(
                 entry.link, ".pickupMain_detailLink a").get("href")
-        text = " ".join([sanitize(p.text) for p in parseElement(
-            detail_link, ".articleMain .paragraph", select_one=False)])
+        paragraphs = parseElement(
+            detail_link, ".articleMain .paragraph", select_one=False)
+        text = " ".join([sanitize(p.text) for p in paragraphs])
         print(text)
