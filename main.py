@@ -26,7 +26,8 @@ class NewsCollector():
         self.coll = self.db[collection]
         self.coll.create_index("link", unique=True)
         self.topics = self.db["topics"]
-        self.topics.create_index("published", unique=True)
+        self.topics.create_index(
+            [("published", pymongo.DESCENDING), ("title", pymongo.DESCENDING)], unique=True)
 
     def insert(self, query):
         if not self.db_access:
