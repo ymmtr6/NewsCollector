@@ -25,6 +25,8 @@ class NewsCollector():
         self.db = self.client[db]
         self.coll = self.db[collection]
         self.coll.create_index("link", unique=True)
+        self.topics = self.db["topics"]
+        self.topics.create_index("published", unique=True)
 
     def insert(self, query):
         if not self.db_access:
@@ -39,8 +41,29 @@ class NewsCollector():
             print(query)
             traceback.print_exc()
 
+    def topic_insert(self, rss_link, yahoo_news_dic):
+        if not self.db_access:
+            print(yahoo_news_dic)
+            return
+        try:
+            query = {
+                "published": yahoo_news_dic.feed.published,
+                "title": yahoo_news_dic.feed.title,
+                "subtitle": yahoo_news_dic.feed.subtitle,
+                "value": yahoo_news_dic.feed.value,
+                "rss_link": rss_link,
+                "entries": yahoo_news_dic.entries
+            }
+            self.topics.insert_one(query)
+        except:
+            import traceback
+            print(rss_link)
+            traceback.print_exc()
+
     def yahoo_news(self, link):
         yahoo_news_dic = feedparser.parse(link)
+        if "pickup" in link:
+            self.topic_insert(link, yahoo_news_dic)
         for entry in yahoo_news_dic.entries:
             # リンクを取得
             detail_link = entry.link
