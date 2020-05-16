@@ -50,7 +50,6 @@ class NewsCollector():
                 "published": yahoo_news_dic.feed.published,
                 "title": yahoo_news_dic.feed.title,
                 "subtitle": yahoo_news_dic.feed.subtitle,
-                "value": yahoo_news_dic.feed.value,
                 "rss_link": rss_link,
                 "entries": yahoo_news_dic.entries
             }
